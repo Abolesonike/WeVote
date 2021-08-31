@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.wv.mapper.ContentMapper">
+    <!--查找所有帖子-->
+    <select id="findAllContent" parameterType="com.example.wv.entity.Content" resultType="com.example.wv.entity.Content">
+        select * from content
+    </select>
+
+    <!--通过id查找帖子-->
+    <select id="findContentById" parameterType="com.example.wv.entity.Content" resultType="com.example.wv.entity.Content">
+        select * from content where id = #{id}
+    </select>
+
+    <!-- 插入一个帖子 -->
+    <insert id="insertOne" parameterType="com.example.wv.entity.Content" useGeneratedKeys="true" keyProperty="id">
+        insert into content (title, post_user_id, content, post_time, choose, vote_number, voted_user ,status)
+        values (#{title}, #{post_user_id}, #{content}, #{post_time},
+                #{choose}, #{vote_number}, #{voted_user} ,#{status})
+    </insert>
+
+    <!--通过id查找帖子投票数-->
+    <select id="findVoteNumberById" parameterType="com.example.wv.entity.Content" resultType="java.lang.String">
+        select vote_number from content where id = #{id}
+    </select>
+
+    <!-- 投票后更新投票用户 -->
+    <update id="addVoteUser">
+        update content set voted_user = concat (voted_user, #{userId}, ",") where id = #{id}
+    </update>
+
+    <!-- 投票后更新投票数 -->
+    <update id="updateVoteNumber">
+        update content set vote_number=#{vote_number} where id = #{id}
+    </update>
+
+</mapper>

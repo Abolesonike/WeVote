@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.example.wv.mapper.ReplayMapper">
+    <resultMap id="BaseResultMap" type="com.example.wv.entity.Replay">
+        <!-- 用id属性来映射主键字段 -->
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <!-- 用result属性来映射非主键字段 -->
+        <result column="from_user_id" jdbcType="INTEGER" property="fromUserId" />
+        <result column="to_user_id" jdbcType="INTEGER" property="toUserId" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="like_count" jdbcType="INTEGER" property="likeCount" />
+        <result column="replay_type" jdbcType="INTEGER" property="replayType" />
+        <result column="belong" jdbcType="INTEGER" property="belong" />
+        <result column="create_time"  property="createTime" />
+    </resultMap>
+
+
+    <!--查找所有回复-->
+    <select id="findAllReplay" parameterType="com.example.wv.entity.Replay" resultType="com.example.wv.entity.Replay">
+        select * from replay
+    </select>
+
+    <!--通过id查找-->
+    <select id="findById" parameterType="com.example.wv.entity.Replay" resultType="com.example.wv.entity.Replay">
+        select * from replay where id = #{id}
+    </select>
+
+    <!--通过类型查找-->
+    <select id="findByReplayType" parameterType="com.example.wv.entity.Replay" resultType="com.example.wv.entity.Replay">
+        select * from replay where replay_type = #{replayType}
+    </select>
+
+    <!-- 查找belong并且类型等于1或者2 -->
+    <select id="findBy1or2AndBelong" parameterType="com.example.wv.entity.Replay" resultMap="BaseResultMap">
+        select * from replay where (replay_type = 1 or replay_type = 2 ) and belong = #{belong}
+    </select>
+
+    <!-- belong和类型查找帖子 -->
+    <select id="findByReplayTypeAndBelong" parameterType="com.example.wv.entity.Replay" resultMap="BaseResultMap">
+        select * from replay where replay_type = #{replayType} and belong = #{belong}
+    </select>
+
+
+    <!-- 插入一条回复 -->
+    <insert id="insertOneReplay" parameterType="com.example.wv.entity.Replay">
+        insert into replay (from_user_id, to_user_id, content, like_count, replay_type, belong,create_time)
+        values (#{fromUserId}, #{toUserId}, #{content}, #{likeCount}, #{replayType}, #{belong},#{createTime})
+    </insert>
+    
+    <!-- 点赞 -->
+    <update id="replayLikeAdd">
+        update replay set like_count=like_count + 1 where id = #{id}
+    </update>
+
+</mapper>
