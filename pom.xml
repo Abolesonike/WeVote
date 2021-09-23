@@ -1,10 +1,10 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.evan</groupId>
-    <artifactId>wj</artifactId>
+    <artifactId>wv</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>wj</name>
-    <description>White Jotter - Your Mind Palace</description>
+    <name>wv</name>
+    <description>We Vote</description>
     <packaging>war</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -61,7 +61,6 @@
             <version>3.0.9</version>
         </dependency>
 
-
         <!-- 测试支持 -->
         <dependency>
             <groupId>junit</groupId>
@@ -81,12 +80,9 @@
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.21</version>
         </dependency>
-
-        <!-- junit -->
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version> 4.12</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <!-- commons-lang -->
         <dependency>
@@ -118,10 +114,6 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.39</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
     </dependencies>
     <properties>
         <java.version>1.8</java.version>
@@ -148,5 +140,7 @@
             <url>https://maven.aliyun.com/repository/public</url>
         </pluginRepository>
     </pluginRepositories>
+
+
 </project>
 

@@ -3,8 +3,7 @@ package com.example.wv.entity;
 import lombok.Data;
 import org.springframework.data.elasticsearch.annotations.Document;
 
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+
 import java.util.Date;
 import java.util.List;
 
